@@ -76,15 +76,33 @@ a {
     cursor: pointer;
 }
 
+.title {
+    text-align: center;
+    position: relative;
+    right: 54px;
+    font-weight: bold;
+    font-size: 26px;
+    left: 26px;
+}
+
 .say {
+    position: relative;
+    font-weight: bold;
+    top: 50px;
     margin-left: 5px;
+
+
+    line-height: 61px;
+
 }
 
 .space {
     margin-right: 150px;
 }
 
-@media screen and (max-width:768px) { /* 对于小于等于手机屏幕尺寸 */
+@media screen and (max-width:768px) {
+
+    /* 对于小于等于手机屏幕尺寸 */
     #wrap {
         position: relative;
         margin: 0 auto;
@@ -96,14 +114,23 @@ a {
         width: auto;
         height: auto;
         left: 10px;
-        top: 10px;
-        position: absolute;
+        top: 61px;
     }
 
     #code {
         display: none;
-        font-size: 24px;
+        font-size: 18px;
     }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        position: relative;
+        right: -32px;
+        top: -42px;
+        margin-left: 12px;
+    }
+
 
     #clock-box {
         position: absolute;
@@ -114,7 +141,7 @@ a {
         display: none;
     }
 
-    .STYLE1{
+    .STYLE1 {
         font-size: 26px;
         color: black;
     }
@@ -152,7 +179,11 @@ a {
     }
 
     .say {
+        font-size: 15px;
         margin-left: 5px;
+        position: relative;
+        top: -20px;
+        left: 51px;
     }
 
     .space {
