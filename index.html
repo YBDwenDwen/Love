@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给小瑜的小礼物</title>
+    <link type="text/css" rel="stylesheet" href="./css/default.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jscex.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-parser.js"></script>
+    <script type="text/javascript" src="./js/jscex-jit.js"></script>
+    <script type="text/javascript" src="./js/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./js/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/love.js" charset="utf-8"></script>
+</head>
+
+<body>
+<audio id="music">
+    <source src="music/苏小念喵 - 牛奶面包（少女高甜版《亲爱的，热爱的》片尾曲） (节目).mp3"/>
+</audio>
+
+<div id="main">
+    <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a
+            href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a
+            href="http://firefox.com.cn/download/">Firefox</a>)浏览器，或者其他游览器的最新版本。
+    </div>
+    <div id="wrap">
+        <div id="text">
+            <div id="code">
+                <span class="say">七夕之夜，</span>
+                <span class="say">我满心是你。</span><br>
+                <span class="say">虽不能并肩，</span>
+                <span class="say">但思念跨越千山万水，</span>
+                <span class="say">只想轻轻对你说：</span><br>
+                <span class="say">我好想你。</span><br>
+                <span class="say"><span class="space"></span><span class="space"></span>-- 小许--</span>
+            </div>
+        </div>
+        <div id="clock-box">
+            小许 <span class="STYLE1">与</span> 小瑜 <span class="STYLE1">已经相识了</span>
+            <div id="clock"></div>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    (function () {
+        var canvas = $('#canvas');
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+
+        // 更新opts对象
+        var opts = {
+            seed: {
+                x: width / 2,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                // 根据屏幕宽度调整分支的位置
+                [535 * (width / 1080), 680 * (height / 650), 570 * (width / 1080), 250 * (height / 650), 500 * (width / 1080), 200 * (height / 650), 40, 100, [
+                    [540 * (width / 1080), 500 * (height / 650), 455 * (width / 1080), 417 * (height / 650), 340 * (width / 1080), 400 * (height / 650), 13, 100, [
+                        [450 * (width / 1080), 435 * (height / 650), 434 * (width / 1080), 430 * (height / 650), 394 * (width / 1080), 395 * (height / 650), 2, 40]
+                    ]],
+                    [550 * (width / 1080), 445 * (height / 650), 600 * (width / 1080), 356 * (height / 650), 680 * (width / 1080), 345 * (height / 650), 12, 100, [
+                        [578 * (width / 1080), 400 * (height / 650), 648 * (width / 1080), 409 * (height / 650), 661 * (width / 1080), 426 * (height / 650), 3, 80]
+                    ]],
+                    [539 * (width / 1080), 281 * (height / 650), 537 * (width / 1080), 248 * (height / 650), 534 * (width / 1080), 217 * (height / 650), 3, 40],
+                    [546 * (width / 1080), 397 * (height / 650), 413 * (width / 1080), 247 * (height / 650), 328 * (width / 1080), 244 * (height / 650), 9, 80, [
+                        [427 * (width / 1080), 286 * (height / 650), 383 * (width / 1080), 253 * (height / 650), 371 * (width / 1080), 205 * (height / 650), 2, 40],
+                        [498 * (width / 1080), 345 * (height / 650), 435 * (width / 1080), 315 * (height / 650), 395 * (width / 1080), 330 * (height / 650), 4, 60]
+                    ]],
+                    [546 * (width / 1080), 357 * (height / 650), 608 * (width / 1080), 252 * (height / 650), 678 * (width / 1080), 221 * (height / 650), 6, 100, [
+                        [590 * (width / 1080), 293 * (height / 650), 646 * (width / 1080), 277 * (height / 650), 648 * (width / 1080), 271 * (height / 650), 2, 80]
+                    ]]
+                ]]
+            ],
+            bloom: {
+                num: 700,
+                width: width,
+                height: height,
+            },
+            footer: {
+                width: width + 100,
+                height: 5,
+                speed: window.innerWidth > 667 ? 10 : 5,
+            }
+        };
+
+        // 创建Tree实例
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function (e) {
+            // 动态加载微信实例
+            if (0 <= navigator.userAgent.toLowerCase().indexOf("micromessenger")) {
+                console.log('wx')
+                const oScript = document.createElement('script');
+                oScript.type = 'text/javascript';
+                oScript.src = 'https://res2.wx.qq.com/open/js/jweixin-1.6.0.js';
+
+                function autoplay() {
+                    wx.config({
+                        // 配置信息, 即使不正确也能使用 wx.ready
+                        debug: false,
+                        appId: '',
+                        timestamp: 1,
+                        nonceStr: '',
+                        signature: '',
+                        jsApiList: []
+                    });
+                    wx.ready(function () {
+                        document.getElementById("music").play();
+                    });
+                }
+
+                oScript.onload = this.autoplay	// 加载成功的回调函数
+                document.body.appendChild(oScript);
+            }
+            // 解决音频文件没有声音
+            var audio = document.getElementById("music");
+            audio.play();
+
+
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            var isMobileViewport = window.innerWidth <= 667;
+            if (isMobileViewport) {
+                tree.snapshot("p1", (width / 2 - 20) - (width / 2), 0, width + 100, height);
+                while (tree.move("p1", (width / 2 - 20) - (width / 2), 150)) {
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+                foot.draw();
+                tree.snapshot("p2", (width / 2 - 20) - (width / 2), 40, width + 100, height);
+            } else {
+                tree.snapshot("p1", (width / 2 - 20) - (width / 2), 0, width, height);
+                while (tree.move("p1", width / 2 - (width / 2) + 200, 0)) {
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+                foot.draw();
+                tree.snapshot("p2", width / 2 - (width / 2) + 200, 0, width, height);
+            }
+
+            // 会有闪烁不得意这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var together = new Date();
+            together.setFullYear(2024, 5, 31 - 31); 			//时间年月日 备注：日为(x-31) x为实际日期
+            together.setHours(0);						//小时
+            together.setMinutes(0);					//分钟
+            together.setSeconds(0);					//秒前一位
+            together.setMilliseconds(2);				//秒第二位
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            if (window.innerWidth > 667) {
+                $await(growAnimate());
+            }
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+</script>
+
+
+</body>
+
+</html>
